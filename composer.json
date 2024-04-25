@@ -3,7 +3,7 @@
     "description": "Agregando POO al Proyecto",
     "autoload": {
         "psr-4": {
-            "App\\": "./classes"
+            "Model\\": "./models"
         }
     },
     "authors": [
