@@ -3,7 +3,9 @@
     "description": "Agregando POO al Proyecto",
     "autoload": {
         "psr-4": {
-            "Model\\": "./models"
+            "Model\\": "./models",
+            "MVC\\": "./",
+            "Controllers\\": "./controllers"
         }
     },
     "authors": [
