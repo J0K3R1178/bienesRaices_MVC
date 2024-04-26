@@ -39,6 +39,11 @@ class Router
         $this->rutas_get[$url] = $funcion;
     }   // Here End Function
 
+    public function render($view)
+    {
+        include __DIR__ . "/views/$view.php";
+    }   // Here End Function
+
 }   // Here End Class
 
 

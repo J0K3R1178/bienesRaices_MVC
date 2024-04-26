@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use MVC\Router;
+
 class PropiedadController
 {
 
@@ -10,9 +12,19 @@ class PropiedadController
 
     }   // Here End Construct
 
-    public function index()
+    public static function index(Router $router)
     {
+        $router->render('propiedades/admin');
+    }   // Here End Function
 
+    public static function crear()
+    {
+        echo "CREAR Controller";
+    }   // Here End Function
+
+    public static function actualizar()
+    {
+        echo "Actualizar Controller";
     }   // Here End Function
 }   // Here End Class
 

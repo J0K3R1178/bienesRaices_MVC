@@ -14,11 +14,9 @@ incluirTemplate('header');
 $router = new Router();
 
 $router->get('/', 'funcion_index');
-$router->get('/admin/', 'funcion_admin');
-$router->get('/propiedades/crear', 'funcion_propiedades_crear');
-$router->get('/propiedades/actualizar', 'funcion_propiedades_actualizar');
-$router->get('/propiedades/crear', 'funcion_propiedades_crear');
-
+$router->get('/admin', [PropiedadController::class, 'index']);
+$router->get('/propiedades/crear', [PropiedadController::class, 'crear']);
+$router->get('/propiedades/actualizar', [PropiedadController::class, 'actualizar']);
 
 
 $router->comprobarRutas();
