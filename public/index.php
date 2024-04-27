@@ -7,9 +7,6 @@ use Controllers\PropiedadController;
 //  APP
 require_once __DIR__ . "/../includes/app.php";
 
-// Header
-incluirTemplate('header');
-
 // Instance variables
 $router = new Router();
 
@@ -21,11 +18,4 @@ $router->get('/propiedades/actualizar', [PropiedadController::class, 'actualizar
 
 $router->comprobarRutas();
 
-?>
-
-
-
-<?php
-
-incluirTemplate('footer');
 ?>
