@@ -6,6 +6,8 @@ use Controllers\PropiedadController;
 
 //  APP
 require_once __DIR__ . "/../includes/app.php";
+// Autoload
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Instance variables
 $router = new Router();
