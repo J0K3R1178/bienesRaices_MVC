@@ -89,12 +89,45 @@ class PropiedadController
         $vendedores = Vendedor::all();
         $errores = Propiedad::getErrores();
 
+    // Ejecutar el código después de que el usuario envia el formulario
+    if($_SERVER['REQUEST_METHOD'] === 'POST') 
+    {
+
+        // Asignar los atributos
+        $args = $_POST['propiedad'];
+
+        $propiedad->sincronizar($args);
+
+        // Validación
+        $errores = $propiedad->validar();
+
+        // Generar un nombre único
+        $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+        if($_FILES['propiedad']['tmp_name']['imagen']) 
+        {
+            $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
+            $propiedad->setImagen($nombreImagen);
+        }   // Here End If
+        
+        if(empty($errores)) 
+        {
+            // Almacenar la imagen
+            if($_FILES['propiedad']['tmp_name']['imagen']) 
+            {
+                $image->save(CARPETA_IMAGENES . $nombreImagen);
+            }   // Here End If
+
+            $propiedad->guardar();
+        }   // Here End If
+    }   // Here End If
+
         $router->render('/propiedades/actualizar',
         [
             'propiedad' => $propiedad,
             'vendedores' => $vendedores,
             '$errores' => $errores
-        ]);
+        ]); // Here End Render
     }   // Here End Function
 }   // Here End Class
 
