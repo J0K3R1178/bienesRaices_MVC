@@ -20,11 +20,15 @@ class PropiedadController
         // Get All Properties
         $propiedades = Propiedad::all();
 
+        // Get All Sellers
+        $vendedores = Vendedor::all();
+
         $resultado = $_GET["resultado"] ?? null;
 
         $router->render('propiedades/admin', 
         [
             'propiedades' => $propiedades,
+            'vendedores' => $vendedores,
             'resultado' => $resultado
         ]);
     }   // Here End Function

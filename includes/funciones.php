@@ -80,7 +80,7 @@ function reedireccionar(string $url)
     
         if(!$id) 
         {
-            header('Location: {$url}');
+            header('Location: ' . $url);
         }   // Here End If
 
         return $id;
