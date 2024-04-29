@@ -129,6 +129,23 @@ class PropiedadController
             '$errores' => $errores
         ]); // Here End Render
     }   // Here End Function
+
+    public static function eliminar(Router $router)
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            $tipo = $_POST['tipo'];
+            $id = reedireccionar('/admin');
+            $propiedad = Propiedad::find($id);
+
+            // peticiones validas
+            if(validarTipoContenido($tipo) ) 
+            {
+                $propiedad->eliminar();
+            }   // Here End If
+        }   // Here End If
+    }   // Here End Function
+
 }   // Here End Class
 
 ?>
