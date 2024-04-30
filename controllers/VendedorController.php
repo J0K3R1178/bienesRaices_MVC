@@ -93,7 +93,8 @@ class VendedorController
         if($_SERVER['REQUEST_METHOD'] === 'POST') 
         {
             $tipo = $_POST['tipo'];
-            $id = reedireccionar('/admin');
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
             $vendedor = Vendedor::find($id);
 
             // peticiones validas
