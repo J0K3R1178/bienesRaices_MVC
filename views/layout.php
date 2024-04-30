@@ -5,7 +5,7 @@
 
     $auth = $_SESSION['login'] ?? false;
 
-    if( isset( $inicio ) )
+    if( !isset( $inicio ) )
     {
         $inicio = false;
     }   // Here End If
