@@ -38,7 +38,9 @@ $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
 $router->get('/', [PaginasController::class, 'index']);
 $router->get('/nosotros', [PaginasController::class, 'nosotros']);
 $router->get('/anuncios', [PaginasController::class, 'anuncios']);
+$router->get('/anuncio', [PaginasController::class, 'anuncio']);
 $router->get('/blog', [PaginasController::class, 'blog']);
+$router->get('/entrada', [PaginasController::class, 'entrada']);
 $router->get('/contacto', [PaginasController::class, 'contacto']);
 
 $router->comprobarRutas();
