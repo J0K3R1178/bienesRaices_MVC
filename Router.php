@@ -21,6 +21,10 @@ class Router
         {
             $funcion = $this->rutas_get[$url_actual] ?? null;
         }   // Here End If
+        elseif($metodo == 'POST')
+        {
+            $funcion = $this->rutas_post[$url_actual] ?? null;
+        }   // Here End ElseIf
 
         if($funcion)
         {
@@ -37,6 +41,11 @@ class Router
     public function get($url, $funcion)
     {
         $this->rutas_get[$url] = $funcion;
+    }   // Here End Function
+
+    public function post($url, $funcion)
+    {
+        $this->rutas_post[$url] = $funcion;
     }   // Here End Function
 
     public function render($view, $datos = [])

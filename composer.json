@@ -14,7 +14,8 @@
             "email": "mendozajeyker1178@gmail.com"
         }
     ],
-    "require": {
+    "require": 
+    {
         "intervention/image": "2.6"
     }
 }
