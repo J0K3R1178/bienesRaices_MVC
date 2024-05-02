@@ -69,6 +69,8 @@ class PaginasController
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
+            $respuestas = $_POST['contacto'];
+
             // Instant of PHPMAILER
             $mail = new PHPMailer();
 
@@ -91,7 +93,18 @@ class PaginasController
             $mail->CharSet = 'UTF-8';
 
             // Define Content
-            $contenido = "<html> <p>Tienes un Nuevo Mensaje</p></html>";
+            $contenido = "<html>"; 
+            $contenido .= " <p>Tienes un Nuevo Mensaje</p></html>";
+            $contenido .= "<p>Nombre " . $respuestas['nombre'] . "</p></html>";
+            $contenido .= "<p>Email: " . $respuestas['email'] . "</p></html>";
+            $contenido .= "<p>Telefono: " . $respuestas['telefono'] . "</p></html>";
+            $contenido .= "<p>Mensaje: " . $respuestas['mensaje'] . "</p></html>";
+            $contenido .= "<p>Vende o Compra: " . $respuestas['tipo'] . "</p></html>";
+            $contenido .= "<p>Prefires ser Contactado por: " . $respuestas['contacto'] . "</p></html>";
+            $contenido .= "<p>Precio o Presupuesto: $ " . $respuestas['precio'] . "</p></html>";
+            $contenido .= "<p>Fecha: " . $respuestas['fecha'] . "</p></html>";
+            $contenido .= "<p>Hora: " . $respuestas['hora'] . "</p></html>";
+            $contenido .= "</html>";
 
             $mail->Body = $contenido;
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
