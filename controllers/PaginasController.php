@@ -4,6 +4,7 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\Propiedad;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class PaginasController
 {
@@ -68,7 +69,43 @@ class PaginasController
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            debuguear($_POST);
+            // Instant of PHPMAILER
+            $mail = new PHPMailer();
+
+            // Config SMTP
+            $mail->isSMTP();
+            $mail->Host ='sandbox.smtp.mailtrap.io';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'a70bfa20bba5e0';
+            $mail->Password = 'f08e203867eef1';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 2525;
+
+            // Config Mail
+            $mail->setFrom('admin@example.com');
+            $mail->addAddress('admin@example.com', 'BienesRaices.com');
+            $mail->Subject = 'Contacto desde BienesRaices.com';
+
+            // Create HTML
+            $mail->isHTML(true);
+            $mail->CharSet = 'UTF-8';
+
+            // Define Content
+            $contenido = "<html> <p>Tienes un Nuevo Mensaje</p></html>";
+
+            $mail->Body = $contenido;
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            if($mail->send())
+            {
+                echo "Mensaje Enviado";
+            }      // Here End If
+            else
+            {
+                echo "Mensaje No Enviado";
+                echo $mail->ErrorInfo;
+            }
+
         }   // Here End Function
         $router->render('paginas/contacto',[]);
     }   // Here End Function
