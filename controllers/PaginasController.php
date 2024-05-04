@@ -67,6 +67,8 @@ class PaginasController
 
     public static function contacto(Router $router)
     {
+        $mensaje = null;
+
         if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $respuestas = $_POST['contacto'];
@@ -96,8 +98,18 @@ class PaginasController
             $contenido = "<html>"; 
             $contenido .= " <p>Tienes un Nuevo Mensaje</p></html>";
             $contenido .= "<p>Nombre " . $respuestas['nombre'] . "</p></html>";
-            $contenido .= "<p>Email: " . $respuestas['email'] . "</p></html>";
-            $contenido .= "<p>Telefono: " . $respuestas['telefono'] . "</p></html>";
+
+            if($respuestas['contacto'] === 'telefono')
+            {
+                $contenido .= '<p>Eligio ser Contactado por Telefono</p>';
+                $contenido .= '<p>Email: ' . $respuestas['telefono'] . '</p>';
+            }   // Here End If
+            else
+            {
+                $contenido .= '<p>Eligio ser Contactado por Email</p>';
+                $contenido .= '<p>Email: ' . $respuestas['email'] . '</p>';
+            }   // Here End Else
+
             $contenido .= "<p>Mensaje: " . $respuestas['mensaje'] . "</p></html>";
             $contenido .= "<p>Vende o Compra: " . $respuestas['tipo'] . "</p></html>";
             $contenido .= "<p>Prefires ser Contactado por: " . $respuestas['contacto'] . "</p></html>";
@@ -111,16 +123,15 @@ class PaginasController
 
             if($mail->send())
             {
-                echo "Mensaje Enviado";
+                $mensaje = 'Mensaje Enviado Correctamente';
             }      // Here End If
             else
             {
-                echo "Mensaje No Enviado";
-                echo $mail->ErrorInfo;
+                $mensaje = 'Mensaje No Se Pudo Enviar';
             }
 
         }   // Here End Function
-        $router->render('paginas/contacto',[]);
+        $router->render('paginas/contacto',['mensaje'=>$mensaje]);
     }   // Here End Function
 
 
