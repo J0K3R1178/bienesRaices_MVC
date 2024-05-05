@@ -13,7 +13,13 @@ class Router
     }   // Here End Construct
 
     public function comprobarRutas()
-    {
+    {   
+        //  Start Session
+        session_start();
+
+        $auth = $_SESSION['login'] ?? null;
+        $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', 
+        '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
         $url_actual = $_SERVER['PATH_INFO'] ?? '/';
         $metodo = $_SERVER['REQUEST_METHOD'];
 
@@ -25,6 +31,11 @@ class Router
         {
             $funcion = $this->rutas_post[$url_actual] ?? null;
         }   // Here End ElseIf
+
+        if(in_array($url_actual, $rutas_protegidas) && !$auth)
+        {
+            header('Location: /');
+        }   // Here End If
 
         if($funcion)
         {
