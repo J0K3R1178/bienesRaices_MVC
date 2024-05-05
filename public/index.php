@@ -1,10 +1,12 @@
 <?php
 
 // USES
+
 use MVC\Router;
 use Controllers\PropiedadController;
 use Controllers\VendedorController;
 use Controllers\PaginasController;
+use Controllers\LoginController;
 
 //  APP
 require_once __DIR__ . "/../includes/app.php";
@@ -33,6 +35,10 @@ $router->get('/blog', [PaginasController::class, 'blog']);
 $router->get('/entrada', [PaginasController::class, 'entrada']);
 $router->get('/contacto', [PaginasController::class, 'contacto']);
 
+// Ger Routes Login
+$router->get('/login', [LoginController::class, 'login']);
+$router->get('/logout', [LoginController::class, 'logout']);
+
 //  Post Routes Propiedades
 $router->post('/propiedades/actualizar', [PropiedadController::class, 'actualizar']);
 $router->post('/propiedades/eliminar', [PropiedadController::class, 'eliminar']);
@@ -45,6 +51,9 @@ $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
 
 // Post Routes Paginas
 $router->post('/contacto', [PaginasController::class, 'contacto']);
+
+// Post Routes Login
+$router->post('/login', [LoginController::class, 'login']);
 
 $router->comprobarRutas();
 
